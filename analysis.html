@@ -102,6 +102,37 @@ window.Quarto = {
 <p><span class="math display">\[Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_n X_n + \epsilon\]</span></p>
 <p>with <span class="math inline">\(\epsilon \sim \mathcal{N}(0, \sigma^2)\)</span>.</p>
 <p>However, this model assumes that the height differences between males and females observed in the general population from 2009-2011 remain stable and representative of future military recruits, which may not hold if recruitment patterns or population characteristics have changed over time.</p>
+<p><span class="math display">\[\hat{\text{height}} = 162.18 + 15.94 \cdot \text{sexMale}\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Estimates and 95% Confidence Intervals for Parameters Source: NHANES 2009–2011</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">conf.low</th>
+<th style="text-align: right;">conf.high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">162.17778</td>
+<td style="text-align: right;">159.7216</td>
+<td style="text-align: right;">164.63394</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sexMale</td>
+<td style="text-align: right;">15.93961</td>
+<td style="text-align: right;">12.3182</td>
+<td style="text-align: right;">19.56102</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We model height, measured in centimeters, as a linear function of sex. This linear regression approach allows us to estimate the average height difference between male and female individuals in our population of interest.</p>
 
 </main>
 <!-- /main column -->
