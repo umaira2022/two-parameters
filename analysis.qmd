@@ -15,6 +15,7 @@ library(tidymodels)
 library(broom)
 library(gt)
 library(knitr)
+library(marginaleffects)
 ```
 
 
@@ -53,3 +54,36 @@ tidy(fit_height, conf.int = TRUE) |>
 ```
 
 We model height, measured in centimeters, as a linear function of sex. This linear regression approach allows us to estimate the average height difference between male and female individuals in our population of interest.
+
+
+```{r}
+library(ggplot2)
+
+plot_predictions(fit_height, 
+                 condition = "sex",
+                 draw = FALSE) |> 
+ggplot(aes(x = sex, 
+           y = estimate, 
+           color = sex)) +
+  geom_pointrange(aes(ymin = conf.low, 
+                      ymax = conf.high),
+                  size = 1.2, 
+                  linewidth = 1.5,
+                  fatten = 3) +
+  scale_color_manual(values = c("Female" = "#E74C3C", "Male" = "#3498DB")) +
+  labs(
+    title = "Forecast Height for USMC Recruits",
+    subtitle = "Men are about 16 (cm) taller than women",
+    x = NULL,
+    y = "Height (cm)",
+    color = "Sex"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none") 
+```
+
+
+Based on our linear model, we estimate that males are on average 15.9 cm taller than females, with a 95% confidence interval ranging from 12.3 to 19.6 cm.
+Our estimates might be wrong due to several assumptions that may not hold. The NHANES data from 2009-2011 may not be representative of future military recruits, who could have different demographic characteristics than the general population. Additionally, the stability assumption may be violated if height differences between sexes have changed over time due to nutritional or other factors. Given these concerns, the true height difference might be smaller than our estimate, perhaps closer to 12-14 cm rather than 15.9 cm, with a wider confidence interval of 10-20 cm to account for the additional uncertainty from population differences and temporal changes.
+
