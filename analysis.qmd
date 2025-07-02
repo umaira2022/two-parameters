@@ -2,5 +2,31 @@
 title: "Two-Parameters"
 author: "Umaira"
 format: html
+execute: 
+  echo: false
 ---
 
+
+```{r}
+#| message: false
+library(tidyverse)
+library(primer.data)
+library(tidymodels)
+library(broom)
+```
+
+
+```{r}
+set.seed(10)
+
+x <- nhanes |>
+  filter(age >= 18 & age <= 27) |>
+  select(height, sex) |>
+  drop_na() |>
+  slice_sample(n = 50) 
+```
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_n X_n + \epsilon$$
+
+with $\epsilon \sim \mathcal{N}(0, \sigma^2)$.
+
+However, this model assumes that the height differences between males and females observed in the general population from 2009-2011 remain stable and representative of future military recruits, which may not hold if recruitment patterns or population characteristics have changed over time.
